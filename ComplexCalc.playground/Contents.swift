@@ -28,6 +28,99 @@ print("Welcome back to the UW Calculator")
 //: IMPORTANT: If any tests are commented out, you will be graded a zero (0)! You should never be in the habit of eliminating tests to make the code pass.
 //:
 class Calculator {
+    // reg add
+    func add (lhs: Int, rhs: Int) -> Int {
+        return lhs + rhs
+    }
+    
+    // add int arr
+    func add (_ args: [Int]) -> Int {
+        var sum = 0
+        for i in 0..<args.count {
+            sum = sum + args[i]
+        }
+        return sum
+    }
+    
+    // add reg pairs
+    func add (lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        return (lhs.0 + rhs.0, lhs.1 + rhs.1)
+    }
+    
+    // add arr pairs
+    func add (lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        return ["x": (lhs["x"] ?? 0) + (rhs["x"] ?? 0), "y": (lhs["y"] ?? 0) + (rhs["y"] ?? 0)] // ?? 0 in case a value is missing
+    }
+    
+    // reg subtract
+    func subtract (lhs: Int, rhs: Int) -> Int {
+        return lhs - rhs
+    }
+    
+    // sub arr pairs
+    func subtract (lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        return ["x": (lhs["x"] ?? 0) - (rhs["x"] ?? 0), "y": (lhs["y"] ?? 0) - (rhs["y"] ?? 0)] // ?? 0 in case a value is missing
+    }
+    
+    // sub reg pairs
+    func subtract (lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        return (lhs.0 - rhs.0, lhs.1 - rhs.1)
+    }
+    
+    // reg multiply
+    func multiply (lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs
+    }
+    
+    //multiply int arr
+    func multiply (_ args: [Int]) -> Int {
+        var product = 1
+        for i in 0..<args.count {
+            product = product * args[i]
+        }
+        return product
+    }
+    
+    // count
+    func count (_ args: [Int]) -> Int {
+        return args.count
+    }
+    
+    // avg
+    func avg (_ args: [Int]) -> Int {
+        // prevent divide by 0 error
+        if args.count == 0 {
+            return 0
+        }
+        
+        var sum = 0
+        for i in 0..<args.count {
+            sum = sum + args[i]
+        }
+        return sum / args.count
+    }
+    
+    
+    // reg divide
+    func divide (lhs: Int, rhs: Int) -> Int {
+        return lhs / rhs
+    }
+    
+    // reg mathOp
+    func mathOp (lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+    
+    // mathOp with beg
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        // stats with beg value
+        var result = beg
+        for num in args {
+            // updates result by applying op func to every num in args arr
+            result = op(result, num)
+        }
+        return result
+    }
 }
 
 //: Don't change the name of this object (`calc`); it's used in all the tests.
